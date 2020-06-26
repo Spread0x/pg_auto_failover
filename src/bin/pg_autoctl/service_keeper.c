@@ -451,8 +451,9 @@ keeper_node_active_loop(Keeper *keeper, pid_t start_pid)
 			}
 		}
 
-		/* now is a good time to make sure we're closing our local connection */
+		/* now is a good time to make sure we're closing our connections */
 		pgsql_finish(pgsql);
+		pgsql_finish(&(keeper->monitor.pgsql));
 
 		CHECK_FOR_FAST_SHUTDOWN;
 
